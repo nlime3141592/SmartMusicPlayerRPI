@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>index</title>
+        <!-- CSS 파일 연결 -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/turntable.css') }}">
+    </head>
+    <body>
+        <div style="position: absolute; left: 5px; top: 5px;">
+            <button id="btn_refresh_page">Refresh</button>
+        </div>
+        <div>
+            <!-- 제목 Smart Music Player -->
+            <div class="flex-container">
+                <div>
+                    <h1>Smart Music Player</h1>
+                    <h2>Music Player</h2>
+                    <p><b>Music Name</b></p>
+                    <p>Artists</p>
+                </div>
+            </div>
+            
+            <div class="flex-container">
+                <!-- 왼쪽 버튼들 (prev, next, list) -->
+                <div id="left-buttons">
+                    <p>
+                        <button id="btn_music_prev">prev</button>
+                        <button id="btn_music_next">next</button>
+                        <button id="btn_music_list">list</button>
+                    </p>
+                    <p>
+                        <button id="btn_music_shuffle">shuffle</button>
+                        <button id="btn_music_loop">loop</button>
+                        <button id="btn_music_like">like</button>
+                    </p>
+                </div>
+
+                <div class="turntable-back flex-container">
+                    <div id="animation">
+                        <div class="record">
+                            <div class="vinyl">
+                                <div></div> <!-- 첫 번째 div -->
+                                <div></div> <!-- 두 번째 div -->
+                                <div></div> <!-- 세 번째 div -->
+                            </div>
+                        </div>
+                        <div class="turntable">
+                            <div></div> <!-- 암 요소 -->
+                            <div></div> <!-- 두 번째 div -->
+                            <div></div> <!-- 세 번째 div -->
+                            <div></div> <!-- 네 번째 div -->
+                            <div></div> <!-- 다섯 번째 div -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 오른쪽 버튼들 (vol++, vol--, mute) -->
+                <div id="right-buttons">
+                    <p>
+                        <button id="btn_music_vol_up">vol++</button>
+                        <button id="btn_music_vol_down">vol--</button>
+                        <button id="btn_music_vol_mute">mute on/off</button>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex-container">
+                <!-- play/pause 버튼 -->
+                <p id="play-button">
+                    <button id="btn_music_play">play/pause</button>
+                </p>
+            </div>
+
+            <div class="flex-container">
+                <p>AI 탐지 기능</p>
+                <p><button id="btn_music_ai">전환</button></p>
+            </div>
+        </div>
+
+        <div class="bg-img"></div>
+
+        <script src="{{ url_for('static', filename='js/uri_music.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    </body>
+</html>

@@ -1,0 +1,235 @@
+/* 변수 대체 */
+:root {
+  --skin: rgba(255,227,210,1);
+  --darkerSkin: rgba(232,135,123,1);
+  --nail: rgba(255,208,196,1);
+}
+  
+/* 공통 애니메이션 */
+@keyframes spin { 
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes play {
+  0% {
+    transform: translate(0px, 0px) rotate(0);
+  }
+  100% {
+    transform: translate(-15px, -6px) rotate(40deg);
+  }
+}
+
+@keyframes turnon { 
+  100% {
+    background-color: #a3d5bc;
+  }
+}
+
+/* 기존 애니메이션 */
+@keyframes spinTurntable {
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+/* 기본 버튼 스타일 */
+button {
+  font-size: 1.2rem;
+  padding: 12px 25px;
+  border: 2px solid #a3d5bc;
+  background-color: #a3d5bc;
+  color: black;
+  border-radius: 10px; /* 모서리 둥글게 만들기 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 버튼에 호버 효과 추가 */
+button:hover {
+  background-color: #79c9b7;
+  border-color: #79c9b7;
+  transform: scale(1.1); /* 약간 커지게 만들기 */
+}
+
+/* 버튼 클릭 시 효과 */
+button:active {
+  background-color: #66b99f;
+  border-color: #66b99f;
+  transform: scale(1); /* 클릭 시 크기 원래대로 */
+}
+
+/* turntable 기본 상태 */
+.turntable {
+  z-index: -3;
+  transform-origin: center; /* 회전 중심 설정 */
+}
+
+/* 노래가 재생 중일 때 */
+.turntable.playing {
+  animation: spinTurntable 5s linear infinite; /* 회전 애니메이션 추가 */
+}
+
+/* 일시 정지 시 애니메이션 제거 */
+.turntable {
+  animation: none; /* 애니메이션 제거 */
+}
+
+/* 기본 스타일 */
+html, body {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+html {
+  background-color: rgba(246,255,246,1);
+}
+
+.turntable-back
+{
+  background-color: bisque;
+  width: 260px;
+  height: 260px;
+  border-radius: 20px;
+}
+
+#animation {
+  position: relative;
+  width: 160px;
+  height: 100px;
+  transform: scale(1.25, 1.25);
+}
+
+.record {
+  position: absolute;
+  z-index: 1;
+}
+
+.vinyl {
+  position: absolute;
+}
+
+.vinyl div {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  background-color: rgba(0,0,5,0.9);
+  border-radius: 50%;
+}
+
+.vinyl div:nth-of-type(1) {
+  margin-top: -5px;
+  margin-left: 3px;
+}
+
+.vinyl div:nth-of-type(2):after {
+  content: "The Smiths";
+  color: white;
+  display: block;
+  font-size: 6px;
+  padding-top: 0px;
+}
+
+.vinyl div:nth-of-type(2) {
+  width: 35px;
+  height: 35px;
+  background-color: #a3d5bc;
+  margin-top: 23px;
+  margin-left: 31px;
+  padding: 10px;
+  z-index: 1;
+  animation: spin 3s linear infinite; /* 애니메이션 설정 */
+  animation-play-state: paused; /* 기본 정지 상태 */
+  text-align: center;
+  animation-delay: 1s;
+}
+
+.vinyl div:nth-of-type(2):after {
+  content: "The Smiths";
+  color: white;
+  display: block;
+  font-size: 6px;
+  padding-top: 0px;
+}
+
+.vinyl div:nth-of-type(3) {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  margin-left: 55px;
+  margin-top: 49px;
+  z-index: 3;
+}
+
+.turntable {
+  z-index: -3;
+}
+
+.turntable div {
+  background-color: #f5f5b7;
+  width: 160px;
+  height: 100px;
+  position: absolute;
+}
+
+.turntable div:nth-of-type(1) {
+  margin-top: 5px;
+  margin-left: 115px;
+  transform: translate(0, 0) rotate(0); /* 기본 위치 */
+  z-index: 3;
+  background-color: gray;
+  width: 9px;
+  height: 90px;
+  transition: transform 0.5s ease; /* 위치 이동 애니메이션 */
+}
+
+.turntable div:nth-of-type(3),
+.turntable div:nth-of-type(4),
+.turntable div:nth-of-type(5) {
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  margin-left: 145px;
+  background-color: #333333;
+  z-index: 100;
+  margin-top: 35px;
+}
+
+.turntable div:nth-of-type(4) {
+  margin-top: 55px;
+}
+
+.turntable div:nth-of-type(5) {
+  margin-top: 75px;
+  animation: turnon 0.8s ease both;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  margin: 0; /* 기본 마진 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('gradation.png');
+  background-size: cover; /* 이미지가 화면에 맞게 크기 조정 */
+  background-position: center center; /* 수평, 수직 모두 중앙 정렬 */
+  background-repeat: no-repeat; /* 이미지 반복 금지 */
+  z-index: -1; /* 콘텐츠 뒤에 위치 */
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
