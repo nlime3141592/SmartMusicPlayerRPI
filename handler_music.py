@@ -106,6 +106,49 @@ def change_volume_down():
 def toggle_playing():
     music.toggle_pausing()
 
+def toggle_like(music_id):
+    dbCursor = get_cursor()
+    dbCursor.execute("select music_like from musiclist where id = ?", [music_id])
+    row = dbCursor.fetchone()
+
+    isLike_prev = int(row[0])
+    isLike_next = 1 - isLike_prev
+
+    dbCursor.execute("update musiclist set music_like = ? where id = ?", [isLike_next, music_id])
+    dbCursor.close()
+
+    commit()
+
+def get_use_ai_detection():
+    dbCursor = get_cursor()
+    dbCursor.execute("select use_ai_detection from playerinfo")
+    row = dbCursor.fetchone()
+
+    dbCursor.close()
+
+    return int(row[0]) != 0
+
+def toggle_ai_detection():
+    use_ai_detection = get_use_ai_detection()
+
+    use_ai_detection_prev = 0
+
+    if get_use_ai_detection():
+        use_ai_detection_prev = 1
+
+    use_ai_detection_next = 1 - use_ai_detection_prev
+
+    dbCursor = get_cursor()
+    dbCursor.execute("update playerinfo set use_ai_detection = ?", [use_ai_detection_next])
+    dbCursor.close()
+
+    commit()
+
+def __update_when_music_ends():
+    if not music.try_catch_end_event():
+        return
+
+    # TODO: 이 곳에 loop 상태, shuffle 상태를 고려한 다음 음악 재생 등의 제어가 필요함.
+
 def update():
-    if music.try_catch_end_event():
-        pass
+    __update_when_music_ends()

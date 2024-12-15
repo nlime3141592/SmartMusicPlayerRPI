@@ -35,21 +35,11 @@ def init():
         print("CHANGE SHUFFLE을 수신했습니다.")
         return Response(status=204)
 
-    @blueprint.route("/toggle_like/<id>", methods=["POST"])
-    def toggle_like(id):
-        dbCursor = get_cursor()
-        dbCursor.execute("select music_like from musiclist where id = ?", [id])
-        row = dbCursor.fetchone()
-        dbCursor.close()
-
-        isLike = int(row[0])
-        dbCursor = get_cursor()
-        dbCursor.execute("update musiclist set music_like = ? where id = ?", [1 - isLike, id])
-        dbCursor.close()
-
-        commit()
+    # TODO: music_id를 URI에 포함하여 기능을 사용하는 테스트가 필요함.
+    @blueprint.route("/toggle_like/<music_id>", methods=["POST"])
+    def toggle_like(music_id):
+        handler_music.toggle_like(int(music_id))
         print("TOGGLE LIKE를 수신했습니다.")
-
         return Response(status=204)
 
     @blueprint.route("/volup", methods=["POST"])
@@ -69,6 +59,8 @@ def init():
         print("VOLMUTE를 수신했습니다.")
         return Response(status=204)
 
+    # NOTE: Front-End에서 버튼을 빠른 속도로 클릭할 때 음악 재생이 처음부터 다시 시작하는 오류 현상을 발견함.
+    # TODO: music.toggle_pausing() 함수 및 음악 재생/정지 제어 관련 로직의 구조 점검이 필요함.
     @blueprint.route("/toggle_playing", methods=["POST"])
     def toggle_playing():
         handler_music.toggle_playing()
@@ -77,6 +69,7 @@ def init():
 
     @blueprint.route("/toggle_ai", methods=["POST"])
     def toggle_ai():
+        handler_music.toggle_ai_detection()
         print("TOGGLE AI를 수신했습니다.")
         return Response(status=204)
 
