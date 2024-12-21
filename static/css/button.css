@@ -1,0 +1,31 @@
+/* 기본 버튼 스타일 */
+button {
+    font-size: 1rem;
+    border: 2px solid #a3d5bc;
+    background-color: #a3d5bc;
+    color: black;
+    border-radius: 10px;
+    width: 96px;
+    height: 32px;
+    margin-left: 2px;
+    margin-right: 2px;
+    /* 모서리 둥글게 만들기 */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 버튼에 호버 효과 추가 */
+button:hover {
+    background-color: #79c9b7;
+    border-color: #79c9b7;
+    transform: scale(1.1);
+    /* 약간 커지게 만들기 */
+}
+
+/* 버튼 클릭 시 효과 */
+button:active {
+    background-color: #66b99f;
+    border-color: #66b99f;
+    transform: scale(1);
+    /* 클릭 시 크기 원래대로 */
+}

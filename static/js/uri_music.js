@@ -27,7 +27,7 @@ document.getElementById("btn_music_prev").onclick = async () =>
 
 document.getElementById("btn_music_list").onclick = async () =>
 {
-   window.location.href = "/music"
+   window.location.href = "/musiclist"
 }
 
 document.getElementById("btn_music_shuffle").onclick = async () =>

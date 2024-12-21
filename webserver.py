@@ -32,7 +32,7 @@ def run():
             host="0.0.0.0",
             debug=True,
             port=5000,
-            use_reloader=False)
+            use_reloader=True)
     except Exception as ex:
         print(f"Flask 서버 실행 중 오류 발생: {ex}")
 

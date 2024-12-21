@@ -11,6 +11,11 @@ def init():
 
     blueprint = Blueprint("control", __name__, url_prefix="/control")
 
+    @blueprint.route("/play/<id>", methods=["POST"])
+    def play_id(id):
+        handler_music.play_music(id)
+        return Response(status=204)
+
     @blueprint.route("/next", methods=["POST"])
     def next():
         handler_music.play_next_music()

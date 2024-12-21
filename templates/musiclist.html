@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music List</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/musiclist.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/button.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/text.css') }}">
+</head>
+<body>
+    <div>
+        <h1>Music List</h1>
+        <p>
+            <button onclick="goBack()">Back</button>
+        </p>
+        <table>
+            <tbody id="musiclist">
+                <tr>
+                    <th class="table-cell-min-width-64px txt-align-right">ID</th>
+                    <th class="table-cell-min-width-256px txt-align-left">Music Name</th>
+                    <th class="table-cell-min-width-128px txt-align-left">Artists</th>
+                    <th class="table-cell-min-width-128px txt-align-left">Upload Date</th>
+                    <th class="table-cell-min-width-192px txt-align-left">Actions</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="bg-img"></div>
+
+    <script src="{{ url_for('static', filename='js/uri_musiclist.js') }}"></script>
+</body>
+</html>

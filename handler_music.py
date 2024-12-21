@@ -3,6 +3,13 @@ from db import commit
 
 import music
 
+def play_music(id):
+    next_music_id = int(id)
+
+    music.set_music_id(next_music_id)
+    music_path = "./music/data/" + str(next_music_id) + ".mp3"
+    music.play(music_path)
+
 def play_next_music():
     dbCursor = get_cursor()
     dbCursor.execute("select (id) from musiclist where id > ? order by id asc limit 1", [music.get_music_id()])
